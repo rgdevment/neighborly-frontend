@@ -1,0 +1,39 @@
+x-app-template: &app-template
+  restart: unless-stopped
+  networks:
+    - internal-net
+  read_only: true
+  tmpfs:
+    - /tmp
+  deploy:
+    resources:
+      limits:
+        memory: 1G
+        cpus: '1.0'
+  healthcheck:
+    test: ['CMD', 'curl', '-f', 'http://localhost:3000/api/health']
+    interval: 30s
+    timeout: 5s
+    retries: 3
+  logging:
+    driver: 'json-file'
+    options:
+      max-size: '10m'
+      max-file: '3'
+
+services:
+  neighborly-frontend:
+    <<: *app-template
+    container_name: neighborly-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    # Expose port 3000 to the host, assuming a reverse proxy will handle it
+    ports:
+      - '3001:3000'
+
+networks:
+  internal-net:
+    external: true

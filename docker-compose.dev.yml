@@ -1,0 +1,23 @@
+services:
+  neighborly-frontend-dev:
+    container_name: neighborly-frontend-dev
+    image: node:22-alpine
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    networks:
+      - internal-net
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    command: sh -c "npm install -g pnpm && pnpm install && pnpm dev"
+
+networks:
+  internal-net:
+    external: true
