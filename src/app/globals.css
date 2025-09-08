@@ -1,6 +1,16 @@
+@import "tailwindcss";
+
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
+@theme {
+  --color-primary: #3B82F6;
+  --color-primary-hover: #2563EB;
+
+  --color-accent: #F97316;
+  --color-accent-hover: #EA580C;
+
+  --color-neutral-50: #F8FAFC;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-500: #64748B;
+  --color-neutral-900: #0F172A;
 }

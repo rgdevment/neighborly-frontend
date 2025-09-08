@@ -1,7 +1,17 @@
-export default function Home() {
+'use client';
+
+import Card from '@/components/ui/Card';
+
+export default function RegisterPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Neighborly Frontend</h1>
-    </main>
+    <Card className="w-full max-w-md">
+      <div className="space-y-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold text-neutral-900">
+            Bienvenido
+          </h1>
+        </div>
+      </div>
+    </Card>
   );
 }
