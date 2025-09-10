@@ -48,7 +48,7 @@ export default function RegisterPage() {
     setApiError(null);
     setIsLoading(true);
     try {
-      const validationResponse = await fetch(`${API_URL}/users/validate`, {
+      const validationResponse = await fetch(`${API_URL}/auth/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -100,7 +100,7 @@ export default function RegisterPage() {
     };
 
     try {
-      const response = await fetch(`${API_URL}/users/register`, {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
