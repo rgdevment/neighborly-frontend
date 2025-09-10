@@ -18,3 +18,9 @@ export const RegisterSchema = z
     message: 'Las contraseñas no coinciden.',
     path: ['confirmPassword'],
   });
+
+export const LoginSchema = z.object({
+  email: z.string().email({ message: 'Por favor, ingresa un correo válido.' }),
+  password: z.string().min(1, { message: 'La contraseña no puede estar vacía.' }),
+});
+

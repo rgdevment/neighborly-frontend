@@ -48,7 +48,7 @@ export default function RegisterPage() {
     setApiError(null);
     setIsLoading(true);
     try {
-      const validationResponse = await fetch(`${API_URL}/users/validate/user`, {
+      const validationResponse = await fetch(`${API_URL}/users/validate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -152,7 +152,7 @@ export default function RegisterPage() {
               control={preRegisterControl}
               render={({ field, fieldState }) => (
                 <Input
-                  label="RUT"
+                  label="Cedula de identidad"
                   type="text"
                   placeholder="12.345.678-9"
                   {...field}
