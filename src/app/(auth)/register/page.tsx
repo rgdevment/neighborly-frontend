@@ -117,6 +117,7 @@ export default function RegisterPage() {
       setUser(userData);
       router.push('/mi-perfil');
     } catch (err: any) {
+      console.error("Error during pre-registration:", err);
       setApiError('El código OTP que ingresaste no es válido o ha expirado. Intenta de nuevo más tarde.');
     } finally {
       setIsLoading(false);

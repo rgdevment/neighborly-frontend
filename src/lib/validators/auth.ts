@@ -45,5 +45,3 @@ export const LoginSchema = EmailSchema.extend({
 });
 
 export const ForgotPasswordSchema = EmailSchema;
-
-export const ResetPasswordSchema = PasswordSchema.merge(OtpOnlySchema);

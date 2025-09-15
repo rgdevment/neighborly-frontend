@@ -7,7 +7,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { ForgotPasswordSchema, PasswordSchema, OtpOnlySchema, ResetPasswordSchema } from '@/lib/validators/auth';
+import { ForgotPasswordSchema, PasswordSchema, OtpOnlySchema } from '@/lib/validators/auth';
 import Card from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
@@ -88,9 +88,7 @@ export default function ForgotPasswordPage() {
         otp: data.otp,
       };
 
-      ResetPasswordSchema.parse(payload);
-
-      const response = await fetch(`${API_URL}/auth/reset-password`, {
+      const response = await fetch(`${API_URL}/auth/password/reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
