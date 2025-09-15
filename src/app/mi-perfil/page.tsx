@@ -23,7 +23,7 @@ export default function ProfilePage() {
       credentials: 'include',
     });
     setUser(null);
-    router.push('/auth/login');
+    router.push('/login');
   };
 
   if (isLoading || !user) {

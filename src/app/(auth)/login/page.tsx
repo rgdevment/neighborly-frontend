@@ -93,7 +93,7 @@ export default function LoginPage() {
             {...register('password')}
           />
           <div className="text-right text-sm">
-            <Link href="/auth/forgot-password" className="font-medium text-primary hover:text-primary-hover">
+            <Link href="/mi-perfil/forgot-password" className="font-medium text-primary hover:text-primary-hover">
               ¿Olvidaste tu contraseña?
             </Link>
           </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
 
           <div className="text-center text-sm text-neutral-500">
             ¿No tienes una cuenta?{' '}
-            <Link href="/auth/register" className="font-medium text-primary hover:text-primary-hover">
+            <Link href="/register" className="font-medium text-primary hover:text-primary-hover">
               Regístrate aquí
             </Link>
           </div>
