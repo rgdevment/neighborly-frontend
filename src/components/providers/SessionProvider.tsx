@@ -1,13 +1,11 @@
 'use client';
-
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAuthStore } from '@/store/auth';
 
 const API_URL = 'http://localhost:3023/v1';
 
 export default function SessionProvider({ children }: Readonly<{ children: React.ReactNode }>) {
-  const { setUser, user } = useAuthStore();
-  const [isLoading, setIsLoading] = useState(true);
+  const { setUser, setIsLoading, user } = useAuthStore();
 
   useEffect(() => {
     const checkUserSession = async () => {
@@ -17,10 +15,7 @@ export default function SessionProvider({ children }: Readonly<{ children: React
       }
 
       try {
-        const response = await fetch(`${API_URL}/users/me`, {
-          credentials: 'include',
-        });
-
+        const response = await fetch(`${API_URL}/users/me`, { credentials: 'include' });
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
@@ -28,6 +23,7 @@ export default function SessionProvider({ children }: Readonly<{ children: React
           setUser(null);
         }
       } catch (error) {
+        console.error('[SessionProvider] Error while checking the session', error);
         setUser(null);
       } finally {
         setIsLoading(false);
@@ -35,11 +31,7 @@ export default function SessionProvider({ children }: Readonly<{ children: React
     };
 
     checkUserSession().then();
-  }, [setUser, user]);
-
-  if (isLoading) {
-    return <div>Verificando sesión...</div>;
-  }
+  }, [setUser, setIsLoading, user]);
 
   return <>{children}</>;
 }

@@ -11,6 +11,7 @@ import { formatRutForDisplay, cleanRut } from '@/lib/utils/rut';
 import Card from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
+import { useAuthStore } from '@/store/auth';
 
 type PreRegisterFormData = z.infer<typeof PreRegisterSchema>;
 type RegisterFormData = z.infer<typeof RegisterSchema>;
@@ -21,7 +22,7 @@ export default function RegisterPage() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-
+  const setUser = useAuthStore((state) => state.setUser);
   const [preRegisterData, setPreRegisterData] = useState<PreRegisterFormData | null>(null);
 
   const {
@@ -111,7 +112,10 @@ export default function RegisterPage() {
         throw new Error(errorData.message || 'Error al crear la cuenta.');
       }
 
-      alert('¡Cuenta creada con éxito!');
+      const userData = await response.json()
+      setUser(userData);
+
+      window.location.href = '/mi-perfil';
     } catch (err: any) {
       setApiError(err.message);
     } finally {
